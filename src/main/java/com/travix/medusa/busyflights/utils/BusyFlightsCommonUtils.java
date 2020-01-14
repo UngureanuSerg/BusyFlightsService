@@ -9,7 +9,7 @@ public class BusyFlightsCommonUtils {
     return r.getBasePrice() * (1 - r.getDiscount() / 100) + r.getTax();
   }
 
-  public static BusyFlightsResponse roundFare(BusyFlightsResponse response) {
+  public static BusyFlightsResponse calculateFare(BusyFlightsResponse response) {
     return BusyFlightsResponse.builder()
         .fare(Math.round(response.getFare() * 100.0) / 100.0).build();
   }

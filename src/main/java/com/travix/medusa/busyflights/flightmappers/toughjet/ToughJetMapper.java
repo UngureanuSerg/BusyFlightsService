@@ -12,7 +12,6 @@ import com.travix.medusa.busyflights.flightmappers.BusyFlightsMapper;
 import com.travix.medusa.busyflights.utils.BusyFlightsCommonUtils;
 import com.travix.medusa.busyflights.utils.BusyFlightsDateFormater;
 import java.time.ZoneId;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -39,7 +38,7 @@ public class ToughJetMapper implements BusyFlightsMapper<ToughJetRequest, ToughJ
             .destinationAirportCode(r.getArrivalAirportName())
             .airline(r.getCarrier())
             .fare(BusyFlightsCommonUtils.getFare(r))
-            .supplier(SupplierName.TOUGH_JET.getSupplierName())
+            .supplier(SupplierName.TOUGH_JET.getFlightSupplierName())
             .departureDate(
                 BusyFlightsDateFormater.convertFormat(r.getOutboundDateTime(), ISO_INSTANT.withZone(
                     ZoneId.systemDefault()), ISO_DATE_TIME))

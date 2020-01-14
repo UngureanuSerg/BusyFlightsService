@@ -1,12 +1,17 @@
 package com.travix.medusa.busyflights.flightmappers.crazyair;
 
+import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
+import com.travix.medusa.busyflights.common.SupplierName;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsRequest;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 import com.travix.medusa.busyflights.domain.crazyair.CrazyAirRequest;
 import com.travix.medusa.busyflights.domain.crazyair.CrazyAirResponse;
 import com.travix.medusa.busyflights.flightmappers.BusyFlightsMapper;
-import java.util.Collections;
+import com.travix.medusa.busyflights.utils.BusyFlightsDateFormater;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,6 +30,20 @@ public class CrazyAirMapper implements BusyFlightsMapper<CrazyAirRequest, CrazyA
 
   @Override
   public List<BusyFlightsResponse> convertToResponses(List<CrazyAirResponse> responses) {
-    return Collections.emptyList();
+    return responses.stream()
+        .map(c -> BusyFlightsResponse.builder()
+            .supplier(SupplierName.CRAZY_AIR.getFlightSupplierName())
+            .airline(c.getAirline())
+            .departureAirportCode(c.getDepartureAirportCode())
+            .destinationAirportCode(c.getDestinationAirportCode())
+            .departureDate(BusyFlightsDateFormater.convertFormat(c.getDepartureDate(),
+                ISO_LOCAL_DATE_TIME,
+                ISO_DATE_TIME))
+            .arrivalDate(BusyFlightsDateFormater.convertFormat(c.getArrivalDate(),
+                ISO_LOCAL_DATE_TIME,
+                ISO_DATE_TIME))
+            .fare(c.getPrice())
+            .build())
+        .collect(Collectors.toList());
   }
 }

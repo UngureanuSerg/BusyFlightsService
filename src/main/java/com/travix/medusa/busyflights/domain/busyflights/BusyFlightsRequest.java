@@ -5,6 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Range;
 
+/**
+ * Changed all domain level classes to use
+ * project lombok for maintainability reasons as it becomes more readable.
+ * Provide only getters so the object to become less mutable.
+ */
 @Getter
 @Builder
 public class BusyFlightsRequest {

@@ -4,13 +4,13 @@ public enum SupplierName {
   CRAZY_AIR("CrazyAir"),
   TOUGH_JET("ToughJet");
 
-  private final String supplierName;
+  private final String flightSupplierName;
 
-  SupplierName(String supplierName) {
-    this.supplierName = supplierName;
+  SupplierName(String flightSupplierName) {
+    this.flightSupplierName = flightSupplierName;
   }
 
-  public String getSupplierName() {
-    return supplierName;
+  public String getFlightSupplierName() {
+    return flightSupplierName;
   }
 }
