@@ -4,7 +4,7 @@ import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsRequest;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 import java.util.List;
 
-public interface FlightSupplierMapper<IR, OR> {
+public interface BusyFlightsMapper<IR, OR> {
 
   IR convertToRequests(BusyFlightsRequest busyFlightsRequest);
 
