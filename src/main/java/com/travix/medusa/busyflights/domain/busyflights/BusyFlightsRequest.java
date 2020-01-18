@@ -1,8 +1,11 @@
 package com.travix.medusa.busyflights.domain.busyflights;
 
 import javax.validation.constraints.Size;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 /**
@@ -11,6 +14,8 @@ import org.hibernate.validator.constraints.Range;
  * Provide only getters so the object to become less mutable.
  */
 @Getter
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Builder
 public class BusyFlightsRequest {
 

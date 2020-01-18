@@ -8,12 +8,12 @@ import java.util.List;
  * Base busy flights mapper, map given busy flight request to busy flights responses, based on the
  * external flight supplier.
  *
- * @param <IR> incoming request
- * @param <OR> outgoing responses
+ * @param <Ir> incoming request
+ * @param <Or> outgoing responses
  */
-public interface BusyFlightsMapper<IR, OR> {
+public interface BusyFlightsMapper<Ir, Or> {
 
-  IR convertToRequests(BusyFlightsRequest busyFlightsRequest);
+  Ir convertToRequests(BusyFlightsRequest busyFlightsRequest);
 
-  List<BusyFlightsResponse> convertToResponses(List<OR> responses);
+  List<BusyFlightsResponse> convertToResponses(List<Or> responses);
 }
