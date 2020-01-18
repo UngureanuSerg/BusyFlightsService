@@ -29,20 +29,21 @@ public class CrazyAirMapper implements BusyFlightsMapper<CrazyAirRequest, CrazyA
   }
 
   @Override
-  public List<BusyFlightsResponse> convertToResponses(List<CrazyAirResponse> responses) {
-    return responses.stream()
-        .map(c -> BusyFlightsResponse.builder()
+  public List<BusyFlightsResponse> convertToResponses(List<CrazyAirResponse> crazyAirResponses) {
+    return crazyAirResponses.stream()
+        .map(crazyAirResponse -> BusyFlightsResponse.builder()
             .supplier(SupplierName.CRAZY_AIR.getFlightSupplierName())
-            .airline(c.getAirline())
-            .departureAirportCode(c.getDepartureAirportCode())
-            .destinationAirportCode(c.getDestinationAirportCode())
-            .departureDate(BusyFlightsDateFormater.convertFormat(c.getDepartureDate(),
+            .airline(crazyAirResponse.getAirline())
+            .departureAirportCode(crazyAirResponse.getDepartureAirportCode())
+            .destinationAirportCode(crazyAirResponse.getDestinationAirportCode())
+            .departureDate(
+                BusyFlightsDateFormater.convertFormat(crazyAirResponse.getDepartureDate(),
+                    ISO_LOCAL_DATE_TIME,
+                    ISO_DATE_TIME))
+            .arrivalDate(BusyFlightsDateFormater.convertFormat(crazyAirResponse.getArrivalDate(),
                 ISO_LOCAL_DATE_TIME,
                 ISO_DATE_TIME))
-            .arrivalDate(BusyFlightsDateFormater.convertFormat(c.getArrivalDate(),
-                ISO_LOCAL_DATE_TIME,
-                ISO_DATE_TIME))
-            .fare(c.getPrice())
+            .fare(crazyAirResponse.getPrice())
             .build())
         .collect(Collectors.toList());
   }

@@ -31,19 +31,21 @@ public class ToughJetMapper implements BusyFlightsMapper<ToughJetRequest, ToughJ
   }
 
   @Override
-  public List<BusyFlightsResponse> convertToResponses(List<ToughJetResponse> responses) {
-    return responses.stream()
-        .map(r -> BusyFlightsResponse.builder()
-            .departureAirportCode(r.getDepartureAirportName())
-            .destinationAirportCode(r.getArrivalAirportName())
-            .airline(r.getCarrier())
-            .fare(BusyFlightsCommonUtils.getFare(r))
+  public List<BusyFlightsResponse> convertToResponses(List<ToughJetResponse> toughJetResponses) {
+    return toughJetResponses.stream()
+        .map(toughJetResponse -> BusyFlightsResponse.builder()
+            .departureAirportCode(toughJetResponse.getDepartureAirportName())
+            .destinationAirportCode(toughJetResponse.getArrivalAirportName())
+            .airline(toughJetResponse.getCarrier())
+            .fare(BusyFlightsCommonUtils.getFare(toughJetResponse))
             .supplier(SupplierName.TOUGH_JET.getFlightSupplierName())
             .departureDate(
-                BusyFlightsDateFormater.convertFormat(r.getOutboundDateTime(), ISO_INSTANT.withZone(
-                    ZoneId.systemDefault()), ISO_DATE_TIME))
+                BusyFlightsDateFormater
+                    .convertFormat(toughJetResponse.getOutboundDateTime(), ISO_INSTANT.withZone(
+                        ZoneId.systemDefault()), ISO_DATE_TIME))
             .arrivalDate(BusyFlightsDateFormater
-                .convertFormat(r.getInboundDateTime(), ISO_INSTANT.withZone(ZoneId.systemDefault()),
+                .convertFormat(toughJetResponse.getInboundDateTime(),
+                    ISO_INSTANT.withZone(ZoneId.systemDefault()),
                     ISO_DATE_TIME))
             .build())
         .collect(Collectors.toList());

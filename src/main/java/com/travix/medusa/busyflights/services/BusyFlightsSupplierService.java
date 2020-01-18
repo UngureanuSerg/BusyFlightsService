@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * All flights supplier interface for extendability reasons.
  */
-public interface BusyFlightsService {
+public interface BusyFlightsSupplierService {
   List<BusyFlightsResponse> searchForFlights(BusyFlightsRequest busyFlightsRequest);
 }
