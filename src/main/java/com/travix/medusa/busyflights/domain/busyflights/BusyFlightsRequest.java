@@ -4,16 +4,15 @@ import javax.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 import org.hibernate.validator.constraints.Range;
 
 /**
- * Changed all domain level classes to use
- * project lombok for maintainability reasons as it becomes more readable.
- * Provide only getters so the object to become less mutable.
+ * Changed all domain level classes to use project lombok for maintainability reasons as it becomes
+ * more readable. Provide only getters so the object to become less mutable.
  */
-@Getter
+@Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Builder

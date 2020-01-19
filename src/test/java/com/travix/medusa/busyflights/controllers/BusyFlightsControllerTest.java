@@ -45,7 +45,7 @@ public class BusyFlightsControllerTest {
 
     Gson gson = new GsonBuilder().create();
 
-    mockMvc.perform(post("/searchFlights")
+    mockMvc.perform(post("/searchForFlights")
         .contentType(MediaType.APPLICATION_JSON)
         .content(gson.toJson(busyFlightsRequest)))
         .andDo(print())
